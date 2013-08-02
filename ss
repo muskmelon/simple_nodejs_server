@@ -31,6 +31,7 @@ var http = require("http"),
       'pdf'  :'application/pdf',
       'wmv'  :'video/x-ms-wmv',
       'ogg'  :'video/ogg',
+      'ogv'  :'video/ogv',
       'mp4'  :'video/mp4'
     };
 
