@@ -9,38 +9,38 @@
 //
 
 var http = require("http"),
-    url = require("url"),
-    path = require("path"),
-    fs = require("fs"),
-    www_root = process.argv[3] || '.',
-    port = process.argv[2] || 8000,
-    MIME_TYPES = {
-      'css'  :'text/css',
-      'gif'  :'image/gif',
-      'htm'  :'text/html',
-      'html' :'text/html',
-      'ico'  :'image/x-icon',
-      'jpeg' :'image/jpeg',
-      'jpg'  :'image/jpeg',
-      'js'   :'text/javascript',
-      'json' :'application/json',
-      'png'  :'image/png',
-      'txt'  :'text/text',
-      'svg'  :'image/svg+xml',
-      'json' :'application/json',
-      'pdf'  :'application/pdf',
-      'wmv'  :'video/x-ms-wmv',
-      'ogg'  :'video/ogg',
-      'ogv'  :'video/ogv',
-      'mp4'  :'video/mp4'
-    };
+url = require("url"),
+path = require("path"),
+fs = require("fs"),
+www_root = process.argv[3] || '.',
+port = process.argv[2] || 8000,
+MIME_TYPES = {
+  'css'  :'text/css',
+  'gif'  :'image/gif',
+  'htm'  :'text/html',
+  'html' :'text/html',
+  'ico'  :'image/x-icon',
+  'jpeg' :'image/jpeg',
+  'jpg'  :'image/jpeg',
+  'js'   :'text/javascript',
+  'json' :'application/json',
+  'png'  :'image/png',
+  'txt'  :'text/text',
+  'svg'  :'image/svg+xml',
+  'json' :'application/json',
+  'pdf'  :'application/pdf',
+  'wmv'  :'video/x-ms-wmv',
+  'ogg'  :'video/ogg',
+  'ogv'  :'video/ogv',
+  'mp4'  :'video/mp4'
+};
 
 http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname,
-      filename = path.join(www_root, uri),
-      filetype = uri.toLowerCase().split('.').pop(),
-      mimetype = (filetype && MIME_TYPES[filetype] ? MIME_TYPES[filetype] : MIME_TYPES['html']);
+  filename = path.join(www_root, uri),
+  filetype = uri.toLowerCase().split('.').pop(),
+  mimetype = (filetype && MIME_TYPES[filetype] ? MIME_TYPES[filetype] : MIME_TYPES['html']);
 
 
   path.exists(filename, function(exists) {
@@ -55,11 +55,11 @@ http.createServer(function(request, response) {
 
     fs.readFile(filename, "binary", function(err, file) {
       if(err) {
-  response.writeHead(500, {"Content-Type": "text/plain"});
-	response.write(err + "\n");
-	response.end();
+        response.writeHead(500, {"Content-Type": "text/plain"});
+        response.write(err + "\n");
+        response.end();
         console.log('Error serving file: ' + filename);
-	return;
+        return;
       }
 
       response.writeHead(200, {
