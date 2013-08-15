@@ -6,3 +6,4 @@ simple node.js server file
 * save 'ss' in `/usr/local/bin/ss` and make it executable `sudo chmod +x /usr/local/bin/ss`
 * now you can just go to any folder and run `ss`, your web server will be running!
 * for more info, check out http://nodejs.org/api/
+* most popular nodejs server so far http://expressjs.com/guide.html, use it as reference
