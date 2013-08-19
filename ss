@@ -44,27 +44,30 @@ http.createServer(function(request, response) {
   
   
   // console.log("uri:"+uri+"\nfilename:"+filename+"\nfiletype:"+filetype+"\nmimetype:"+mimetype)
-  // check if uri's last character is '/', if it does, redirect
-  if (uri[uri.length-1] == "/"){
-    response.writeHead(302, {
-      'Location': uri.substr(0,uri.length-1)
-      //add other headers here...
-    });
-    response.end();
-  }
-  // check if it's first level path and has no extension, if it is, then change it to './'
-  names = filename.split("/")
-  names = names.filter(function(element, index, array){return (element != "")}) //take out empty string
-  first_name = names[0]
-  // console.log('~~~~~~'+names, names.length)
-  if (names.length == 1){
-    if (first_name.indexOf(".") == -1){
-      uri = "/"
-      filename = "./"
-      filetype = "/"
-      mimetype = "text/html"
+  if (uri != "/"){
+    // check if uri's last character is '/', if it does, redirect
+    if (uri[uri.length-1] == "/"){
+      response.writeHead(302, {
+        'Location': uri.substr(0,uri.length-1)
+        //add other headers here...
+      });
+      response.end();
+    }
+    // check if it's first level path and has no extension, if it is, then change it to './'
+    names = filename.split("/")
+    names = names.filter(function(element, index, array){return (element != "")}) //take out empty string
+    first_name = names[0]
+    // console.log('~~~~~~'+names, names.length)
+    if (names.length == 1){
+      if (first_name.indexOf(".") == -1){
+        uri = "/"
+        filename = "./"
+        filetype = "/"
+        mimetype = "text/html"
+      }///if
     }///if
-  }///if
+  }///if 
+
   
   
   fs.exists(filename, function(exists) {
